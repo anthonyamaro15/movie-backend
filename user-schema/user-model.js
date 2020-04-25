@@ -16,7 +16,7 @@ function getFavMovies(id) {
   return db("users as u")
     .join("favorite as f", "u.id", "f.user_id")
     .where(`u.id`, id)
-    .select("f.favorite_movie");
+    .select("f.id", "f.favorite_movie");
 }
 
 // function removeFav(id) {
@@ -32,5 +32,5 @@ module.exports = {
   findBy,
   find,
   getFavMovies,
-  removeFav,
+  //   removeFav,
 };
