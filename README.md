@@ -1,2 +1,2 @@
 # movie-backend
-backend for the movie app. 
+backend for the movie app, user sign up/ login
