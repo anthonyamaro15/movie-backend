@@ -5,11 +5,11 @@ exports.up = function (knex) {
       table.string("email", 128).unique("email").notNullable();
       table.string("username", 128).unique("username").notNullable();
       table.string("password", 128).notNullable();
-      table.integer("favorite_id").unsigned().references("favorie.id");
     })
     .createTable("favorite", (table) => {
       table.increments();
       table.string("favorite_movie");
+      table.integer("user_id").notNullable().unsigned().references("users.id");
     });
 };
 
