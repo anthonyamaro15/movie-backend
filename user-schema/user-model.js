@@ -19,9 +19,18 @@ function getFavMovies(id) {
     .select("f.favorite_movie");
 }
 
+// function removeFav(id) {
+//   return db("users as u")
+//     .join("favorite as f", "u.id", "f.user_id")
+//     .where("u.id", id)
+//     .select('f.favorite_movie')
+//     .del();
+// }
+
 module.exports = {
   add,
   findBy,
   find,
   getFavMovies,
+  removeFav,
 };

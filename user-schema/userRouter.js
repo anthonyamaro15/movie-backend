@@ -4,7 +4,6 @@ const User = require("./user-model");
 const route = express.Router();
 
 route.get("/", (req, res) => {
-  console.log("does it runs?");
   User.find()
     .then((users) => {
       res.status(200).json(users);
