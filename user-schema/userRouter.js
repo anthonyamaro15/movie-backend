@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require("./user-model");
-const validate = require("../middlewares/validate");
+const { validateId } = require("../middlewares/validate");
 
 const route = express.Router();
 
@@ -14,14 +14,27 @@ route.get("/", (req, res) => {
     });
 });
 
-route.get("/favorites/:id", validate.validateId, (req, res) => {
+route.get("/:id/favorites", (req, res) => {
   const { id } = req.params;
-  User.getFavMovies(id)
-    .then((movie) => {
-      res.status(200).json(movie);
+  User.userFavMovies(id)
+    .then((movies) => {
+      res.status(200).json(movies);
     })
     .catch(({ error, message }) => {
       res.status(404).json({ error, message });
+    });
+});
+
+route.post("/:id/favorites", (req, res) => {
+  const { id } = req.params;
+  User.addMovie(id, req.body)
+    .then((movie) => {
+      res.status(201).json(movie);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ errorMessage: "there was an error adding the movie" });
     });
 });
 
